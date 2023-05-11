@@ -1,4 +1,3 @@
-#if Addressable
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Callbacks;
@@ -59,4 +58,3 @@ namespace LCHFramework.Components.Addressable
         }
     }
 }
-#endif
