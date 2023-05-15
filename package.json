@@ -11,15 +11,6 @@
     "com.unity.addressables": "1.21.9",
     "kr.lch.lchframework": "1.0.0"
   },
-  "scopedRegistries": [
-   {
-     "name": "LCHFramework",
-     "url": "https://github.com/ckdgus4002",
-     "scopes": [
-       "kr.lch"
-     ]
-   }
- ],
   "author": {
     "name": "LCH",
     "email": "lch@lch.kr",
