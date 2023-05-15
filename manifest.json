@@ -1,1 +1,5 @@
-"kr.lch.lchframework": "https://github.com/ckdgus4002/LCHFramework.git"
+{
+  "dependencies": {
+    "kr.lch.lchframework": "https://github.com/ckdgus4002/LCHFramework.git"
+  }
+}
