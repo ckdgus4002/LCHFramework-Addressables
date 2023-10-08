@@ -8,7 +8,7 @@
     "url": "git+https://github.com/ckdgus4002/LCHFramework-Addressable.git"
   },
   "dependencies": {
-    "com.unity.addressables": "1.21.9"
+    "com.unity.addressables": "1.21.18"
   },
   "author": {
     "name": "LCH",
