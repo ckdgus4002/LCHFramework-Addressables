@@ -1,18 +1,13 @@
 {
   "name": "kr.lch.lchframework.addressable",
-  "displayName": "LCHFramework.Addressable",
-  "description": "LCHFramework.Addressable",
+  "displayName": "LCHFramework Addressable",
+  "description": "LCHFramework Addressable",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ckdgus4002/LCHFramework.Addressable.git"
+    "url": "git+https://github.com/ckdgus4002/LCHFramework-Addressable.git"
   },
   "dependencies": {
     "com.unity.addressables": "1.21.9"
-  },
-  "author": {
-    "name": "LCH",
-    "email": "lch@lch.kr",
-    "url": "https://github.com/ckdgus4002"
   }
 }
