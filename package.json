@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "com.unity.addressables": "1.21.18",
-    "__kr.lch.lchframework": "1.0.0"
+    "__kr.lch.lchframework__": "1.0.0"
   },
   "author": {
     "name": "LCH",
