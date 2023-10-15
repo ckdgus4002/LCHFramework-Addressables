@@ -3,7 +3,9 @@
     "rootNamespace": "LCHFramework.Addressable",
     "references": [
         "Unity.Addressables",
-        "Unity.ResourceManager"
+        "Unity.Addressables.Editor",
+        "Unity.ResourceManager",
+        "LCHFramework"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
