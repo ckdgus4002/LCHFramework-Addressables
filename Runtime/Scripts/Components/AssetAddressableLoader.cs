@@ -2,6 +2,7 @@ using UnityEditor.AddressableAssets;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.Exceptions;
 
 namespace LCHFramework.Addressable.Components
 {
@@ -37,17 +38,45 @@ namespace LCHFramework.Addressable.Components
         
         public override void OnAllocate() => AssetAddress = asset != null ? AddressableAssetSettingsDefaultObject.Settings.FindAssetEntry(asset.AssetGUID).address : string.Empty;
         
+        // https://docs.unity3d.com/Packages/com.unity.addressables@1.20/manual/LoadingAssetBundles.html
         public AsyncOperationHandle<T2> LoadAsync()
         {
             if (!IsLoaded)
             {
-                AsyncOperationHandle = _LoadAsync();
+                AsyncOperationHandle = GetLoadAsyncOperationHandle();
+                AsyncOperationHandle.Completed += handle =>
+                {
+                    var dlError = GetDownloadError(AsyncOperationHandle);
+                    if (!string.IsNullOrEmpty(dlError))
+                    {
+                        // handle what error
+                        Debug.LogError(dlError);
+                    }
+                };
             }
             
             return AsyncOperationHandle;
         }
 
-        protected virtual AsyncOperationHandle<T2> _LoadAsync() => Addressables.LoadAssetAsync<T2>(AssetAddress);
+        protected virtual AsyncOperationHandle<T2> GetLoadAsyncOperationHandle() => Addressables.LoadAssetAsync<T2>(AssetAddress);
+
+        private string GetDownloadError(AsyncOperationHandle fromHandle)
+        {
+            if (fromHandle.Status != AsyncOperationStatus.Failed)
+                return null;
+
+            RemoteProviderException remoteException;
+            var e = fromHandle.OperationException;
+            while (e != null)
+            {
+                remoteException = e as RemoteProviderException;
+                if (remoteException != null)
+                    return remoteException.WebRequestResult.Error;
+                e = e.InnerException;
+            }
+
+            return null;
+        }
 
         public void Release()
         {
