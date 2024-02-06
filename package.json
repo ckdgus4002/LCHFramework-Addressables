@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "com.unity.addressables": "1.21.18",
-    "kr.lch.lchframework": "https://github.com/ckdgus4002/LCHFramework.git"
+    "kr.lch.lchframework": "1.0.0"
   },
   "author": {
     "name": "LCH",
