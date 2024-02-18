@@ -12,11 +12,13 @@ namespace LCHFramework.Addressable.Managers
 
 
 
-        protected override void _Show()
+        public override async void Show()
         {
-            AssetAddressableLoader.LoadAsync();
+            base.Show();
+
+            await AssetAddressableLoader.LoadAsync().Task;
             
-            Hide();
+            SequenceManager.PassCurrentSequence();
         }
     }
 }
