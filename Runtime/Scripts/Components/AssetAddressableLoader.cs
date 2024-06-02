@@ -1,8 +1,11 @@
-using UnityEditor.AddressableAssets;
+
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.Exceptions;
+#if UNITY_EDITOR
+using UnityEditor.AddressableAssets;
+#endif
 
 namespace LCHFramework.Addressable.Components
 {
@@ -36,7 +39,12 @@ namespace LCHFramework.Addressable.Components
         
         
         
-        public override void OnAllocate() => AssetAddress = asset != null ? AddressableAssetSettingsDefaultObject.Settings.FindAssetEntry(asset.AssetGUID).address : string.Empty;
+        public override void OnAllocate()
+        {
+#if UNITY_EDITOR
+            AssetAddress = asset != null ? AddressableAssetSettingsDefaultObject.Settings.FindAssetEntry(asset.AssetGUID).address : string.Empty;   
+#endif
+        }
         
         // https://docs.unity3d.com/Packages/com.unity.addressables@1.20/manual/LoadingAssetBundles.html
         public AsyncOperationHandle<T2> LoadAsync()
