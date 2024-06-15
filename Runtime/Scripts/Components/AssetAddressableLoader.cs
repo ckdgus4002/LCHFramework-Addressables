@@ -1,8 +1,9 @@
-
+using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.Exceptions;
+using Object = UnityEngine.Object;
 #if UNITY_EDITOR
 using UnityEditor.AddressableAssets;
 #endif
@@ -13,13 +14,12 @@ namespace LCHFramework.Addressable.Components
     {
         [SerializeField] private bool autoLoad;
         [SerializeField] private bool autoRelease = true;
-        
 #if UNITY_EDITOR
         public AssetReferenceT<T1> asset;
 #endif
-
         
         protected string AssetAddress { get; private set; }
+        
         protected AsyncOperationHandle<T2> AsyncOperationHandle { get; private set; }
         
         
@@ -27,14 +27,18 @@ namespace LCHFramework.Addressable.Components
         
         
         
-        protected virtual void Start()
+        protected override void Start()
         {
+            base.Start();
+            
             if (autoLoad) LoadAsync();
         }
 
-        protected virtual void OnDestroy()
+        protected override void OnDestroy()
         {
-            if (autoRelease) Release();
+            base.OnDestroy();
+            
+            if (autoRelease) ReleaseIfCan();
         }
         
         
@@ -86,11 +90,15 @@ namespace LCHFramework.Addressable.Components
             return null;
         }
 
-        public void Release()
+        public void ReleaseIfCan() => ReleaseIfCan(result => { if (result) Release(); });
+        
+        public void ReleaseIfCan(Action<bool> release)
         {
-            if (IsLoaded) _Release();
+            var result = IsLoaded;
+            
+            release?.Invoke(result);
         }
 
-        protected virtual void _Release() => Addressables.Release(AsyncOperationHandle);
+        protected virtual void Release() => Addressables.Release(AsyncOperationHandle);
     }
 }

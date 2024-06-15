@@ -22,6 +22,6 @@ namespace LCHFramework.Addressable.Components
         
         protected override AsyncOperationHandle<SceneInstance> GetLoadAsyncOperationHandle() => Addressables.LoadSceneAsync(AssetAddress);
 
-        protected override void _Release() => Addressables.UnloadSceneAsync(AsyncOperationHandle);
+        protected override void Release() => Addressables.UnloadSceneAsync(AsyncOperationHandle);
     }
 }

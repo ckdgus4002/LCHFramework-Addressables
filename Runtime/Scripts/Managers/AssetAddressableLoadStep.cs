@@ -9,16 +9,16 @@ namespace LCHFramework.Addressable.Managers
     {
         private AssetAddressableLoader<Object, object> AssetAddressableLoader => _assetAddressableLoader == null ? _assetAddressableLoader = GetComponent<AssetAddressableLoader<Object, object>>() : _assetAddressableLoader;
         private AssetAddressableLoader<Object, object> _assetAddressableLoader;
-
-
-
+        
+        
+        
         public override async void Show()
         {
             base.Show();
 
             await AssetAddressableLoader.LoadAsync().Task;
             
-            StepManager.PassCurrentStep();
+            PassCurrentStep.PassCurrentStep();
         }
     }
 }
