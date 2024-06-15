@@ -34,10 +34,8 @@ namespace LCHFramework.Addressable.Components
             if (autoLoad) LoadAsync();
         }
 
-        protected override void OnDestroy()
+        private void OnDestroy()
         {
-            base.OnDestroy();
-            
             if (autoRelease) ReleaseIfCan();
         }
         

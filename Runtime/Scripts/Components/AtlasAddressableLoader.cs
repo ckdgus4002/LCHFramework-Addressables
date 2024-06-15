@@ -12,10 +12,8 @@ namespace LCHFramework.Addressable.Components
             SpriteAtlasManager.atlasRequested += OnAtlasRequested;        
         }
 
-        protected override void OnDestroy()
+        private void OnDestroy()
         {
-            base.OnDestroy();
-            
             SpriteAtlasManager.atlasRequested -= OnAtlasRequested;
         }
         
