@@ -21,9 +21,9 @@ namespace LCHFramework.Addressable.Components
         protected string AssetAddress { get; private set; }
         
         protected AsyncOperationHandle<T2> AsyncOperationHandle { get; private set; }
-        
-        
-        private bool IsLoaded => AsyncOperationHandle is { IsDone: true, Status: AsyncOperationStatus.Succeeded };
+
+
+        private bool IsLoaded => AsyncOperationHandle.IsValid();
         
         
         
