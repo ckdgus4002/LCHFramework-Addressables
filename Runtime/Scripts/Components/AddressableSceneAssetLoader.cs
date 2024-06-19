@@ -10,9 +10,9 @@ using UnityEngine;
 namespace LCHFramework.Addressable.Components
 {
 #if UNITY_EDITOR
-    public class SceneAssetAddressableLoader : AssetAddressableLoader<SceneAsset, SceneInstance>
+    public class AddressableSceneAssetLoader : AddressableAssetLoader<SceneAsset, SceneInstance>
 #else
-    public class SceneAssetAddressableLoader : AssetAddressableLoader<Object, SceneInstance>
+    public class AddressableSceneAssetLoader : AddressableAssetLoader<Object, SceneInstance>
 #endif
     {
         // UnityEvent event.

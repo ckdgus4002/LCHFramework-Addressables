@@ -3,7 +3,7 @@ using UnityEngine.U2D;
 
 namespace LCHFramework.Addressable.Components
 {
-    public class AtlasAddressableLoader : AssetAddressableLoader<SpriteAtlas, SpriteAtlas>
+    public class AtlasLoader : AddressableAssetLoader<SpriteAtlas, SpriteAtlas>
     {
         protected override void Start()
         {

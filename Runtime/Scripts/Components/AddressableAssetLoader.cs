@@ -10,7 +10,7 @@ using UnityEditor.AddressableAssets;
 
 namespace LCHFramework.Addressable.Components
 {
-    public class AssetAddressableLoader<T1, T2> : EditorObjectAllocator where T1 : Object
+    public class AddressableAssetLoader<T1, T2> : EditorObjectAllocator where T1 : Object
     {
         [SerializeField] private bool autoLoad;
         [SerializeField] private bool autoRelease = true;
