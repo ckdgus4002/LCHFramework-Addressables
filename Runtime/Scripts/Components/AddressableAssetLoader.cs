@@ -44,6 +44,7 @@ namespace LCHFramework.Addressable.Components
         public override void OnAllocate()
         {
 #if UNITY_EDITOR
+            Debug.Log(AddressableAssetSettingsDefaultObject.Settings.FindAssetEntry(asset.AssetGUID).address);
             AssetAddress = asset != null ? AddressableAssetSettingsDefaultObject.Settings.FindAssetEntry(asset.AssetGUID).address : string.Empty;   
 #endif
         }
