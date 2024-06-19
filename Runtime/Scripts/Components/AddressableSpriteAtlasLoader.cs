@@ -3,7 +3,7 @@ using UnityEngine.U2D;
 
 namespace LCHFramework.Addressable.Components
 {
-    public class AtlasLoader : AddressableAssetLoader<SpriteAtlas, SpriteAtlas>
+    public class AddressableSpriteAtlasLoader : AddressableAssetLoader<SpriteAtlas, SpriteAtlas>
     {
         protected override void Start()
         {
@@ -19,9 +19,13 @@ namespace LCHFramework.Addressable.Components
         
         
         
-        private async void OnAtlasRequested(string tag, Action<SpriteAtlas> action)
+        private void OnAtlasRequested(string tag, Action<SpriteAtlas> action)
         {
-            if (tag == AssetAddress) action(await LoadAsync().Task);
+            if (tag == AssetAddress)
+                LoadAsync().Completed += handle =>
+                {
+                    action(handle.Result);
+                };
         }
     }
 }

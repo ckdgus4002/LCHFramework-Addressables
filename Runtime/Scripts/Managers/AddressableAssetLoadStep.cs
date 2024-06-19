@@ -12,13 +12,14 @@ namespace LCHFramework.Addressable.Managers
         
         
         
-        public override async void Show()
+        public override void Show()
         {
             base.Show();
 
-            await AddressableAssetLoader.LoadAsync().Task;
-            
-            PassCurrentStep.PassCurrentStep();
+            AddressableAssetLoader.LoadAsync().Completed += _ =>
+            {
+                PassCurrentStep.PassCurrentStep();
+            }; 
         }
     }
 }
