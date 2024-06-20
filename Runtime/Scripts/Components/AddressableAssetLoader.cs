@@ -1,4 +1,5 @@
 using System;
+using LCHFramework.Components;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -10,15 +11,15 @@ using UnityEditor.AddressableAssets;
 
 namespace LCHFramework.Addressable.Components
 {
-    public class AddressableAssetLoader<T1, T2> : EditorObjectAllocator where T1 : Object
+    public class AddressableAssetLoader<T1, T2> : LCHMonoBehaviour where T1 : Object
     {
         [SerializeField] private bool autoLoad;
         [SerializeField] private bool autoRelease = true;
 #if UNITY_EDITOR
         public AssetReferenceT<T1> asset;
 #endif
+        [SerializeField] protected string assetAddress;
         
-        protected string AssetAddress { get; private set; }
         
         protected AsyncOperationHandle<T2> AsyncOperationHandle { get; private set; }
 
@@ -26,6 +27,13 @@ namespace LCHFramework.Addressable.Components
         private bool IsLoaded => AsyncOperationHandle.IsValid();
         
         
+        
+        private void OnValidate()
+        {
+#if UNITY_EDITOR
+            assetAddress = asset != null ? AddressableAssetSettingsDefaultObject.Settings.FindAssetEntry(asset.AssetGUID).address : string.Empty;
+#endif
+        }
         
         protected override void Start()
         {
@@ -40,14 +48,6 @@ namespace LCHFramework.Addressable.Components
         }
         
         
-        
-        public override void OnAllocate()
-        {
-#if UNITY_EDITOR
-            Debug.Log(AddressableAssetSettingsDefaultObject.Settings.FindAssetEntry(asset.AssetGUID).address);
-            AssetAddress = asset != null ? AddressableAssetSettingsDefaultObject.Settings.FindAssetEntry(asset.AssetGUID).address : string.Empty;   
-#endif
-        }
         
         // https://docs.unity3d.com/Packages/com.unity.addressables@1.20/manual/LoadingAssetBundles.html
         public AsyncOperationHandle<T2> LoadAsync()
@@ -69,7 +69,10 @@ namespace LCHFramework.Addressable.Components
             return AsyncOperationHandle;
         }
 
-        protected virtual AsyncOperationHandle<T2> GetLoadAsyncOperationHandle() => Addressables.LoadAssetAsync<T2>(AssetAddress);
+        protected virtual AsyncOperationHandle<T2> GetLoadAsyncOperationHandle()
+        {
+            return Addressables.LoadAssetAsync<T2>(assetAddress);
+        }
 
         private string GetDownloadError(AsyncOperationHandle fromHandle)
         {

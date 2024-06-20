@@ -21,7 +21,7 @@ namespace LCHFramework.Addressable.Components
         
         private void OnAtlasRequested(string tag, Action<SpriteAtlas> action)
         {
-            if (tag == AssetAddress)
+            if (tag == assetAddress)
                 LoadAsync().Completed += handle =>
                 {
                     action(handle.Result);

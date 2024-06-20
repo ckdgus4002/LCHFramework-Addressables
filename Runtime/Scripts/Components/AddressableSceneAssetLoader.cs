@@ -17,10 +17,10 @@ namespace LCHFramework.Addressable.Components
     {
         // UnityEvent event.
         public void OnClick() => LoadAsync();
-        
-        
-        
-        protected override AsyncOperationHandle<SceneInstance> GetLoadAsyncOperationHandle() => Addressables.LoadSceneAsync(AssetAddress);
+
+
+
+        protected override AsyncOperationHandle<SceneInstance> GetLoadAsyncOperationHandle() => Addressables.LoadSceneAsync(assetAddress);
 
         protected override void Release() => Addressables.UnloadSceneAsync(AsyncOperationHandle);
     }
