@@ -1,0 +1,19 @@
+{
+    "name": "LCHFramework.Addressables.Editor",
+    "rootNamespace": "LCHFramework.Addressables.Editor",
+    "references": [
+        "GUID:35a9115053f314078b78bc0e2168f8ba",
+        "GUID:69448af7b92c7f342b298e06a37122aa"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
