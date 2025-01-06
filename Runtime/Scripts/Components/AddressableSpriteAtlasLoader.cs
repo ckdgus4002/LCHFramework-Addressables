@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.U2D;
 
-namespace LCHFramework.Addressable.Components
+namespace LCHFramework.Addressables.Components
 {
     public class AddressableSpriteAtlasLoader : AddressableAssetLoader<SpriteAtlas, SpriteAtlas>
     {

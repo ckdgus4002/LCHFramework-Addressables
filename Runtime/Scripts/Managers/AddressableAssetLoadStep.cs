@@ -1,8 +1,8 @@
-using LCHFramework.Addressable.Components;
+using LCHFramework.Addressables.Components;
 using LCHFramework.Managers;
 using UnityEngine;
 
-namespace LCHFramework.Addressable.Managers
+namespace LCHFramework.Addressables.Managers
 {
     [RequireComponent(typeof(AddressableAssetLoader<Object, object>))]
     public class AddressableAssetLoadStep : Step

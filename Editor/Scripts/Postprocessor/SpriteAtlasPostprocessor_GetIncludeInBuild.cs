@@ -3,7 +3,7 @@ using UnityEditor.AddressableAssets;
 using UnityEditor.U2D;
 using UnityEngine.U2D;
 
-namespace LCHFramework.Editor
+namespace LCHFramework.Addressables.Editor
 {
     public static class SpriteAtlasPostprocessor_GetIncludeInBuild
     {

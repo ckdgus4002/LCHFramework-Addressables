@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 using UnityEditor.AddressableAssets;
 #endif
 
-namespace LCHFramework.Addressable.Components
+namespace LCHFramework.Addressables.Components
 {
     public class AddressableAssetLoader<T1, T2> : LCHMonoBehaviour where T1 : Object
     {

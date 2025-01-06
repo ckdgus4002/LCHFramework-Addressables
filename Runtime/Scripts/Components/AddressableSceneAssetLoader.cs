@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 #endif
 
-namespace LCHFramework.Addressable.Components
+namespace LCHFramework.Addressables.Components
 {
 #if UNITY_EDITOR
     public class AddressableSceneAssetLoader : AddressableAssetLoader<SceneAsset, SceneInstance>
