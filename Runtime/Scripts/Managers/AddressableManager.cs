@@ -91,43 +91,6 @@ namespace LCHFramework.Addressables.Managers
         
         
         
-        private static readonly Dictionary<string, AsyncOperationHandle<AudioClip>> LoadAudioClips = new();
-        public static AsyncOperationHandle<AudioClip> LoadAudioClipAsync(string address)
-        {
-            if (!LoadAudioClips.ContainsKey(address))
-                LoadAudioClips.Add(address, UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<AudioClip>(address));
-        
-            return LoadAudioClips[address];
-        }
-        
-        private static readonly Dictionary<string, AsyncOperationHandle<SpriteAtlas>> LoadSpriteAtlases = new();
-        public static AsyncOperationHandle<SpriteAtlas> LoadSpriteAtlasAsync(string address)
-        {
-            if (!LoadSpriteAtlases.ContainsKey(address))
-            {
-                var operationHandle = UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<SpriteAtlas>(address);
-                operationHandle.Completed += handle => SpriteAtlasBindingManager.AddSpriteAtlas(handle.Result);
-                LoadSpriteAtlases.Add(address, operationHandle);
-            }
-
-            return LoadSpriteAtlases[address];
-        }
-        
-        
-        
-        public static void ReleaseAudioClip(string address) { if (LoadAudioClips.Remove(address, out var obj)) UnityEngine.AddressableAssets.Addressables.Release(obj); }
-
-        public static void ReleaseSpriteAtlas(string address)
-        {
-            if (LoadSpriteAtlases.Remove(address, out AsyncOperationHandle<SpriteAtlas> value))
-            {
-                SpriteAtlasBindingManager.RemoveSpriteAtlas(value.Result);
-                UnityEngine.AddressableAssets.Addressables.Release(value);
-            }
-        }
-        
-        
-        
         public static List<string> GetAddresses<T>(string label)
         {
             var result = new List<string>();
