@@ -71,7 +71,7 @@ namespace LCHFramework.Addressables.Components
 
         protected virtual AsyncOperationHandle<T2> GetLoadAsyncOperationHandle()
         {
-            return Addressables.LoadAssetAsync<T2>(assetAddress);
+            return UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<T2>(assetAddress);
         }
 
         private string GetDownloadError(AsyncOperationHandle fromHandle)
@@ -101,6 +101,6 @@ namespace LCHFramework.Addressables.Components
             release?.Invoke(result);
         }
 
-        protected virtual void Release() => Addressables.Release(AsyncOperationHandle);
+        protected virtual void Release() => UnityEngine.AddressableAssets.Addressables.Release(AsyncOperationHandle);
     }
 }

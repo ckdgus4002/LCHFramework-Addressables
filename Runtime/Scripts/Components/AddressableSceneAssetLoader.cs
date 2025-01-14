@@ -1,4 +1,3 @@
-using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 #if UNITY_EDITOR
@@ -20,8 +19,8 @@ namespace LCHFramework.Addressables.Components
 
 
 
-        protected override AsyncOperationHandle<SceneInstance> GetLoadAsyncOperationHandle() => Addressables.LoadSceneAsync(assetAddress);
+        protected override AsyncOperationHandle<SceneInstance> GetLoadAsyncOperationHandle() => UnityEngine.AddressableAssets.Addressables.LoadSceneAsync(assetAddress);
 
-        protected override void Release() => Addressables.UnloadSceneAsync(AsyncOperationHandle);
+        protected override void Release() => UnityEngine.AddressableAssets.Addressables.UnloadSceneAsync(AsyncOperationHandle);
     }
 }
