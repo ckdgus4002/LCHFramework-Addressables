@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "com.unity.addressables": "1.21.21",
-    "kr.lch.lchframework": "1.0.4"
+    "kr.lch.lchframework": "1.0.7",
+    "com.neuecc.unirx": "7.1.0"
   },
   "author": {
     "name": "Lee Changhyun",

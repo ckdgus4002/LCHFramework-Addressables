@@ -1,5 +1,6 @@
 using LCHFramework.Addressables.Components;
 using LCHFramework.Managers;
+using UniRx;
 using UnityEngine;
 
 namespace LCHFramework.Addressables.Managers
@@ -18,7 +19,7 @@ namespace LCHFramework.Addressables.Managers
 
             AddressableAssetLoader.LoadAsync().Completed += _ =>
             {
-                PassCurrentStep.PassCurrentStep();
+                MessageBroker.Default.Publish(new PassCurrentStepMessage());
             }; 
         }
     }
